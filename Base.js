@@ -10,10 +10,6 @@ var bl = document.getElementById('bl');
 var bm = document.getElementById('bm');
 var br = document.getElementById('br');
 
-var reset = document.getElementById('reset');
-
-var counter = 0;
-
 var tl_O = document.getElementById('tl_O');
 var tl_X = document.getElementById('tl_X');
 var tm_O = document.getElementById('tm_O');
@@ -35,147 +31,236 @@ var bm_X = document.getElementById('bm_X');
 var br_O = document.getElementById('br_O');
 var br_X = document.getElementById('br_X');
 
+var counter = 0;
+var reset = document.getElementById('reset');
+
 function win() { 
+  // top row
     if (tl_X.classList.contains('visible') && tm_X.classList.contains('visible') && tr_X.classList.contains('visible')) {
-        console.log('Top row X wins!')   
+      console.log('Top row X wins!')   
     } 
     if (tl_O.classList.contains('visible') && tm_O.classList.contains('visible') && tr_O.classList.contains('visible')) {
-        console.log('Top row O wins!')   
-    } 
+      console.log('Top row O wins!')   
+    }
+
+  // middle row
     if (ml_X.classList.contains('visible') && mm_X.classList.contains('visible') && mr_X.classList.contains('visible')) {
-        console.log('middle row X wins!')   
+      console.log('middle row X wins!')   
     } 
     if (ml_O.classList.contains('visible') && mm_O.classList.contains('visible') && mr_O.classList.contains('visible')) {
-        console.log('middle row O wins!')   
-    } 
+      console.log('middle row O wins!')   
+    }
+
+  // bottom row
     if (bl_X.classList.contains('visible') && bm_X.classList.contains('visible') && br_X.classList.contains('visible')) {
-        console.log('bottom row X wins!')   
+      console.log('bottom row X wins!')   
     } 
     if (bl_O.classList.contains('visible') && bm_O.classList.contains('visible') && br_O.classList.contains('visible')) {
-        console.log('bottom row O wins!')   
+      console.log('bottom row O wins!')   
+    }
+
+  // left column
+    if (tl_X.classList.contains('visible') && ml_X.classList.contains('visible') && bl_X.classList.contains('visible')) {
+      console.log('left column X wins!')   
     } 
+    if (tl_O.classList.contains('visible') && ml_O.classList.contains('visible') && bl_O.classList.contains('visible')) {
+      console.log('left column O wins!')   
+    }
+
+  // middle column
+    if (tm_X.classList.contains('visible') && mm_X.classList.contains('visible') && bm_X.classList.contains('visible')) {
+      console.log('middle column X wins!')   
+    } 
+    if (tm_O.classList.contains('visible') && mm_O.classList.contains('visible') && bm_O.classList.contains('visible')) {
+      console.log('middle column O wins!')   
+    }
+
+  // right column
+    if (tr_X.classList.contains('visible') && mr_X.classList.contains('visible') && br_X.classList.contains('visible')) {
+      console.log('right column X wins!')   
+    } 
+    if (tr_O.classList.contains('visible') && mr_O.classList.contains('visible') && br_O.classList.contains('visible')) {
+      console.log('right column O wins!')   
+    }
+
+  // left diagonal
+    if (tl_X.classList.contains('visible') && mm_X.classList.contains('visible') && br_X.classList.contains('visible')) {
+      console.log('left diagonal X wins!')   
+    } 
+    if (tl_O.classList.contains('visible') && mm_O.classList.contains('visible') && br_O.classList.contains('visible')) {
+      console.log('left diagonal O wins!')   
+    }
+
+  // right diagonal
+    if (tr_X.classList.contains('visible') && mm_X.classList.contains('visible') && bl_X.classList.contains('visible')) {
+      console.log('right diagonal X wins!')   
+    } 
+    if (tr_O.classList.contains('visible') && mm_O.classList.contains('visible') && bl_O.classList.contains('visible')) {
+      console.log('right diagonal O wins!')   
+    }
+    
 }
 
 
+// this event fires every time the panel is flipped. 
+// it first asks if the panel has already been flipped...
+// if the panel has already been flipped, then nothing happens. 'return' is a word that is supposed to say 'stop here and leave'. nothing happens after return
+// if the panel hasn't been flipped, then the 'else' function runs. this ensures that nothing weird happens when you click on a panel that's been clicked before
+
 tl.addEventListener('click', function() {
+  if(tl.classList.contains('flipped')) {
+    return
+  } else {
     tl.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        tl_O.style.display = 'none'
-        tl_X.classList.add('visible')
-    } else {
-        tl_X.style.display = 'none'
-        tl_O.classList.add('visible')
-    }
+      if (counter%2 == 0) {
+          tl_O.classList.add('invisible')
+          tl_X.classList.add('visible')
+      } else {
+          tl_X.classList.add('invisible')
+          tl_O.classList.add('visible')
+      }
    win()
+  }
 })
 
 tm.addEventListener('click', function() {
+  if(tm.classList.contains('flipped')) {
+    return
+  } else {
     tm.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        tm_O.style.display = 'none'
-        tm_X.classList.add('visible')
-    } else {
-        tm_X.style.display = 'none'
-        tm_O.classList.add('visible')
-    }
+      if (counter%2 == 0) {
+          tm_O.classList.add('invisible')
+          tm_X.classList.add('visible')
+      } else {
+          tm_X.classList.add('invisible')
+          tm_O.classList.add('visible')
+      }
     win()
-    })
+      }
+  })
 
 tr.addEventListener('click', function() {
+  if(tr.classList.contains('flipped')) {
+    return
+  } else {
     tr.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        tr_O.style.display = 'none'
-        tr_X.classList.add('visible')
-    } else {
-        tr_X.style.display = 'none'
-        tr_O.classList.add('visible')
-    }
+      if (counter%2 == 0) {
+          tr_O.classList.add('invisible')
+          tr_X.classList.add('visible')
+      } else {
+          tr_X.classList.add('invisible')
+          tr_O.classList.add('visible')
+      }
     win()
-    })
+      }  
+  })
 
 ml.addEventListener('click', function() {
+  if(ml.classList.contains('flipped')) {
+    return
+  } else {
     ml.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        ml_O.style.display = 'none'
-        ml_X.classList.add('visible')
-    } else {
-        ml_X.style.display = 'none'
-        ml_O.classList.add('visible')
+      if (counter%2 == 0) {
+          ml_O.classList.add('invisible')
+          ml_X.classList.add('visible')
+      } else {
+          ml_X.classList.add('invisible')
+          ml_O.classList.add('visible')
+      }
+    win()    
     }
-    win()
-    })
+  })
 
 mm.addEventListener('click', function() {
+  if(mm.classList.contains('flipped')) {
+    return
+  } else {
     mm.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        mm_O.style.display = 'none'
-        mm_X.classList.add('visible')
-    } else {
-        mm_X.style.display = 'none'
-        mm_O.classList.add('visible')
+      if (counter%2 == 0) {
+          mm_O.classList.add('invisible')
+          mm_X.classList.add('visible')
+      } else {
+          mm_X.classList.add('invisible')
+          mm_O.classList.add('visible')
+      }
+    win()    
     }
-    win()
-    })
+  })
 
 mr.addEventListener('click', function() {
+  if(mr.classList.contains('flipped')) {
+    return
+  } else {
     mr.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        mr_O.style.display = 'none'
-        mr_X.classList.add('visible')
-    } else {
-        mr_X.style.display = 'none'
-        mr_O.classList.add('visible')
+      if (counter%2 == 0) {
+          mr_O.classList.add('invisible')
+          mr_X.classList.add('visible')
+      } else {
+          mr_X.classList.add('invisible')
+          mr_O.classList.add('visible')
+      }
+    win()    
     }
-    win()
-    })
+  })
 
 bl.addEventListener('click', function() {
+  if(bl.classList.contains('flipped')) {
+    return
+  } else {
     bl.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        bl_O.style.display = 'none'
-        bl_X.classList.add('visible')
-    } else {
-        bl_X.style.display = 'none'
-        bl_O.classList.add('visible')
+      if (counter%2 == 0) {
+          bl_O.classList.add('invisible')
+          bl_X.classList.add('visible')
+      } else {
+          bl_X.classList.add('invisible')
+          bl_O.classList.add('visible')
+      }
+    win()    
     }
-    win()
-    })
+  })
 
 bm.addEventListener('click', function() {
+  if(bm.classList.contains('flipped')) {
+    return
+  } else {
     bm.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        bm_O.style.display = 'none'
-        bm_X.classList.add('visible')
-    } else {
-        bm_X.style.display = 'none'
-        bm_O.classList.add('visible')
+      if (counter%2 == 0) {
+          bm_O.classList.add('invisible')
+          bm_X.classList.add('visible')
+      } else {
+          bm_X.classList.add('invisible')
+          bm_O.classList.add('visible')
+      }
+    win()    
     }
-    win()
-    })
+  })
 
 br.addEventListener('click', function() {
+  if(br.classList.contains('flipped')) {
+    return
+  } else {
     br.classList.add('flipped')
     counter++
-    if (counter%2 == 0) {
-        br_O.style.display = 'none'
-        br_X.classList.add('visible')
-    } else {
-        br_X.style.display = 'none'
-        br_O.classList.add('visible')
+      if (counter%2 == 0) {
+          br_O.classList.add('invisible')
+          br_X.classList.add('visible')
+      } else {
+          br_X.classList.add('invisible')
+          br_O.classList.add('visible')
+      }
+    win()    
     }
-    win()
-    })
+  })
 
 reset.addEventListener('click', function() {
-    console.log('it works!')
     tl.classList.remove('flipped')
     tm.classList.remove('flipped')
     tr.classList.remove('flipped')
@@ -186,34 +271,34 @@ reset.addEventListener('click', function() {
     bm.classList.remove('flipped')
     br.classList.remove('flipped')
 
-    tl_X.classList.remove('visible')
-    tl_O.classList.remove('visible')
+    tl_X.classList.remove('visible', 'invisible')
+    tl_O.classList.remove('visible', 'invisible')
 
-    tm_X.classList.remove('visible')
-    tm_O.classList.remove('visible')
+    tm_X.classList.remove('visible', 'invisible')
+    tm_O.classList.remove('visible', 'invisible')
 
-    tr_X.classList.remove('visible')
-    tr_O.classList.remove('visible')
+    tr_X.classList.remove('visible', 'invisible')
+    tr_O.classList.remove('visible', 'invisible')
 
-    ml_X.classList.remove('visible')
-    ml_O.classList.remove('visible')
+    ml_X.classList.remove('visible', 'invisible')
+    ml_O.classList.remove('visible', 'invisible')
 
-    mm_X.classList.remove('visible')
-    mm_O.classList.remove('visible')
+    mm_X.classList.remove('visible', 'invisible')
+    mm_O.classList.remove('visible', 'invisible')
 
-    mr_X.classList.remove('visible')
-    mr_O.classList.remove('visible')
+    mr_X.classList.remove('visible', 'invisible')
+    mr_O.classList.remove('visible', 'invisible')
 
-    bl_X.classList.remove('visible')
-    bl_O.classList.remove('visible')
+    bl_X.classList.remove('visible', 'invisible')
+    bl_O.classList.remove('visible', 'invisible')
 
-    bl_X.classList.remove('visible')
-    bl_O.classList.remove('visible')
+    bm_X.classList.remove('visible', 'invisible')
+    bm_O.classList.remove('visible', 'invisible')
 
-    br_X.classList.remove('visible')
-    br_O.classList.remove('visible')
+    br_X.classList.remove('visible', 'invisible')
+    br_O.classList.remove('visible', 'invisible')
     
+    counter = 0
 
     console.log(counter)
-    counter = 0
 })
