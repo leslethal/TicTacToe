@@ -75,11 +75,35 @@
     justify-content: center;
 }
 
+#winnerContainer {
+    position: absolute; 
+    z-index: 100;
+    height: 100vh;
+    width: 100%; 
+    border: solid red 1px; 
+    top: 0;
+    justify-content: center;
+    background-color: #acff2f8a;
+    display: none;
+}
+
+#winner {
+    color: red;
+    display: flex;
+    height: 100%;
+    font-size: 4em;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
 #reset {
     position: relative;
     display: block;
     margin: 20px auto auto;
     width: 100px;
+    z-index: 101;
 }
 
 .flipped {
